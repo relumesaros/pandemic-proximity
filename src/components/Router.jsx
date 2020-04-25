@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Diagnose from './Diagnose';
 import SelfHealthCheck from './SelfHealthCheck';
+import Statistics from './Statistics';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -40,7 +41,7 @@ export default function App() {
             </Route>
 
             <Route path="/statistics">
-              <p>statistics</p>
+              <Statistics />
             </Route>
           </Switch>
         </div>
