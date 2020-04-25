@@ -2,10 +2,19 @@ body, html {
     width: 100%;
     height: 100%;
     margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body > div {
     width: 100%;
     height: 100%;
     margin: 0;
+}
+
+a:hover, a:visited, a:link, a:active {
+
+    text-decoration: none!important;
+
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }

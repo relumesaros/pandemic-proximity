@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Diagnose from './Diagnose';
 import SelfHealthCheck from './SelfHealthCheck';
+import Home from "./Home";
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -17,35 +18,33 @@ export default function App() {
   return (
     <Router>
       <RouterContentWrapper>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <p>home</p>
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
 
-            <Route path="/map">
-              <p>map</p>
-            </Route>
+          <Route path="/map">
+            <p>map</p>
+          </Route>
 
-            <Route path="/diagnose">
-              <Diagnose />
-            </Route>
+          <Route path="/diagnose">
+            <Diagnose/>
+          </Route>
 
-            <Route path="/self-health-check">
-              <SelfHealthCheck />
-            </Route>
+          <Route path="/self-health-check">
+            <SelfHealthCheck/>
+          </Route>
 
-            <Route path="/news">
-              <p>news</p>
-            </Route>
+          <Route path="/news">
+            <p>news</p>
+          </Route>
 
-            <Route path="/statistics">
-              <p>statistics</p>
-            </Route>
-          </Switch>
-        </div>
+          <Route path="/statistics">
+            <p>statistics</p>
+          </Route>
+        </Switch>
 
-        <Navbar />
+        <Navbar/>
       </RouterContentWrapper>
     </Router>
   );
