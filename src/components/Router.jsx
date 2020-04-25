@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Diagnose from './Diagnose';
 import SelfHealthCheck from './SelfHealthCheck';
-import Home from "./Home";
+import Home from './Home';
 import Statistics from './Statistics';
 import News from './News';
 
@@ -23,7 +23,7 @@ export default function App() {
         <div>
           <Switch>
             <Route exact path="/">
-              <Home/>
+              <Home />
             </Route>
 
             <Route path="/map">
