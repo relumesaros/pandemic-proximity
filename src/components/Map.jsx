@@ -32,6 +32,20 @@ class Map extends React.Component {
       zoom: 17,
     });
 
+    const cityCircle = new window.google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: window.map,
+      center: { lat: 46.777386, lng: 23.61562 },
+      radius: 30,
+    });
+    cityCircle.addListener('click', () => {
+      console.error('buiacasa');
+    });
+
     const input = document.getElementById('pac-input');
 
     if (this.initializedAutocomplete) {
