@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { withRouter } from 'react-router-dom';
@@ -16,6 +17,12 @@ const NavbarWrapper = styled.div`
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
 
+const styles = {
+  root: {
+    'margin-top': '15px'
+  },
+};
+
 class Navbar extends React.Component {
   state = {
     value: 'home',
@@ -31,6 +38,7 @@ class Navbar extends React.Component {
 
   render() {
     const { value } = this.state;
+    const { classes } = this.props;
 
     return (
       <NavbarWrapper>
@@ -38,31 +46,32 @@ class Navbar extends React.Component {
           <BottomNavigationAction
             label="Home"
             value="home"
-            icon={<HomeIcon />}
+            className={classes.root}
+            icon={<HomeIcon/>}
           />
 
           <BottomNavigationAction
             label="Map"
             value="map"
-            icon={<MapCustomIcon />}
+            icon={<MapCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="Diagnose"
             value="diagnose"
-            icon={<DiagnoseCustomIcon />}
+            icon={<DiagnoseCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="News"
             value="news"
-            icon={<NewsCustomIcon />}
+            icon={<NewsCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="Statistics"
             value="statistics"
-            icon={<StatisticsCustomIcon />}
+            icon={<StatisticsCustomIcon/>}
           />
         </BottomNavigation>
       </NavbarWrapper>
@@ -70,4 +79,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default withRouter(Navbar);
+export default withStyles(styles)(withRouter(Navbar));
