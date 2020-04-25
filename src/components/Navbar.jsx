@@ -51,8 +51,10 @@ class Navbar extends React.Component {
 
     const { pathname } = this.props.location;
 
+    let value = pathname.replace(/\//g, '');
+    value = value === '' ? 'home' : value;
     this.state = {
-      value: pathname.replace(/\//g, ''),
+      value,
     };
   }
 
