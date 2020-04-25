@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -36,38 +37,44 @@ const Diagnose = () => {
 
   return (
     <>
-      <h1>Diagnose</h1>
-      <p>Have a big impact in your Community.</p>
-      <p>Help us to prevent the spread of COVID-19</p>
+      <Container maxWidth="sm">
+        <h1>Diagnose</h1>
+        <p>Have a big impact in your Community.</p>
+        <p>Help us to prevent the spread of COVID-19</p>
 
-      <div className={classes.buttons}>
-        <Button variant="outlined" color="primary" className={classes.button}>
-          Self Health Check
-        </Button>
-        <Button variant="outlined" color="secondary" className={classes.button}>
-          Mark yourself as infected
-        </Button>
-      </div>
-
-      <Card variant="outlined" className={classes.card}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            Quick Test Kit
-          </Typography>
-          <Typography variant="body2" component="p">
-            You can request a COVID-19 Quick Test Kit for 20 €
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.cardAction}>
+        <div className={classes.buttons}>
+          <Button variant="outlined" color="primary" className={classes.button}>
+            Self Health Check
+          </Button>
           <Button
-            variant="contained"
-            color="primary"
+            variant="outlined"
+            color="secondary"
             className={classes.button}
           >
-            Request a Quick Test Kit
+            Mark yourself as infected
           </Button>
-        </CardActions>
-      </Card>
+        </div>
+
+        <Card variant="outlined" className={classes.card}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              Quick Test Kit
+            </Typography>
+            <Typography variant="body2" component="p">
+              You can request a COVID-19 Quick Test Kit for 20 €
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.cardAction}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Request a Quick Test Kit
+            </Button>
+          </CardActions>
+        </Card>
+      </Container>
     </>
   );
 };
