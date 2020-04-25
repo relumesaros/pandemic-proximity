@@ -4,12 +4,11 @@ import checkYourAreaSrc from '../assests/checkYourArea.png';
 import preventCovid from '../assests/preventCovid.png';
 import FaceSmileCustomIcon from '../customIcons/FaceSmileCustomIcon';
 import FaceSadCustomIcon from '../customIcons/FaceSadCustomIcon';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
 const HomeWrapper = styled.div`
-  background: rgba(47,123,255,0.79);
+  background: rgba(47, 123, 255, 0.79);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -43,7 +42,7 @@ const ButtonGood = styled.div`
   border-radius: 16px;
   display: flex;
   justify-content: center;
-  color: #34C082;
+  color: #34c082;
   align-items: center;
 `;
 
@@ -55,7 +54,7 @@ const ButtonBad = styled.div`
   border-radius: 16px;
   display: flex;
   justify-content: center;
-  color: #DE351B;
+  color: #de351b;
   align-items: center;
 `;
 
@@ -69,15 +68,12 @@ const HomeStatusImageWrapper = styled.img`
   border: 4px solid white;
   border-radius: 50%;
   margin-bottom: 25px;
-
 `;
-
 
 const CheckYourAreaImageWrapper = styled.img`
   width: 100%;
   padding-top: 10px;
 `;
-
 
 const PreventCovidImageWrapper = styled.img`
   width: 100%;
@@ -101,7 +97,7 @@ const HealthCheckTextWrapper = styled.p`
 `;
 
 const HomeFooterWrapper = styled.div`
-  background: #F9FCFF;
+  background: #f9fcff;
   padding: 0 24px;
   border-top-right-radius: 24px;
   border-top-left-radius: 24px;
@@ -111,46 +107,37 @@ const Home = () => {
   return (
     <HomeWrapper>
       <HomeStatusWrapper>
-
         <HomeStatusContentWrapper>
           <HomeStatusTextWrapper>
-            <HelloWrapper>
-              Hello Ruben!
-            </HelloWrapper>
+            <HelloWrapper>Hello Ruben!</HelloWrapper>
             <HealthCheckTextWrapper>
               How is you health at the moment?
             </HealthCheckTextWrapper>
           </HomeStatusTextWrapper>
-          <HomeStatusImageWrapper src={profileImageSrc}/>
+          <HomeStatusImageWrapper src={profileImageSrc} />
         </HomeStatusContentWrapper>
 
         <ButtonWrapper>
           <ButtonGood>
-            <FaceSmileCustomIcon/>
-            <ButtonTextWrapper>
-              GOOD
-            </ButtonTextWrapper>
+            <FaceSmileCustomIcon />
+            <ButtonTextWrapper>GOOD</ButtonTextWrapper>
           </ButtonGood>
 
           <Link to="/diagnose">
             <ButtonBad>
-              <FaceSadCustomIcon/>
-              <ButtonTextWrapper>
-                Bad
-              </ButtonTextWrapper>
+              <FaceSadCustomIcon />
+              <ButtonTextWrapper>Bad</ButtonTextWrapper>
             </ButtonBad>
           </Link>
-
         </ButtonWrapper>
-
       </HomeStatusWrapper>
 
       <HomeFooterWrapper>
         <Link to="/map">
-          <CheckYourAreaImageWrapper src={checkYourAreaSrc}/>
+          <CheckYourAreaImageWrapper src={checkYourAreaSrc} />
         </Link>
         <Link to="/diagnose">
-          <PreventCovidImageWrapper src={preventCovid}/>
+          <PreventCovidImageWrapper src={preventCovid} />
         </Link>
       </HomeFooterWrapper>
     </HomeWrapper>
