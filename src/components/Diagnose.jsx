@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -43,9 +44,15 @@ const Diagnose = () => {
         <p>Help us to prevent the spread of COVID-19</p>
 
         <div className={classes.buttons}>
-          <Button variant="outlined" color="primary" className={classes.button}>
-            Self Health Check
-          </Button>
+          <Link to="/self-health-check">
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.button}
+            >
+              Self Health Check
+            </Button>
+          </Link>
           <Button
             variant="outlined"
             color="secondary"
