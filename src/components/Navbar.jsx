@@ -12,8 +12,10 @@ import NewsCustomIcon from '../customIcons/NewsCustomIcon';
 import StatisticsCustomIcon from '../customIcons/StatisticsCustomIcon';
 
 const NavbarWrapper = styled.div`
+  bottom: 0;
   width: 100%;
   height: 90px;
+  position: fixed;
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
 
@@ -33,6 +35,7 @@ class Navbar extends React.Component {
 
     const path = value === 'home' ? '' : value;
 
+    // eslint-disable-next-line react/prop-types
     this.props.history.push(`/${path}`);
   };
 
