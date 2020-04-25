@@ -19,11 +19,31 @@ const NavbarWrapper = styled.div`
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
 
-const styles = {
-  root: {
-    'margin-top': '15px'
-  },
+const BottomNavigationActionStyle = {
+  margin: '5px 0 0 0!important',
+  'margin-top': '5px!important',
+  'min-width': '50px',
+  'max-width': '70px',
+  'padding': '0'
 };
+
+const styles = {
+    BottomNavigationRoot: {
+      'padding-top': '10px'
+    },
+    BottomNavigationSelected: {
+      padding: 0
+    },
+    BottomNavigationActionRoot: {
+      color: '#84899C',
+      ...BottomNavigationActionStyle
+    },
+    BottomNavigationActionSelected: {
+      color: '#272D40',
+      ...BottomNavigationActionStyle
+    }
+  }
+;
 
 class Navbar extends React.Component {
   state = {
@@ -43,37 +63,61 @@ class Navbar extends React.Component {
     const { value } = this.state;
     const { classes } = this.props;
 
+    console.error('classes', classes);
+
     return (
       <NavbarWrapper>
-        <BottomNavigation value={value} onChange={this.handleChange} showLabels>
+        <BottomNavigation value={value} onChange={this.handleChange} showLabels
+                          classes={{
+                            root: classes.BottomNavigationRoot
+                          }}>
           <BottomNavigationAction
             label="Home"
             value="home"
-            className={classes.root}
-            icon={<HomeIcon/>}
+            classes={{
+              root: classes.BottomNavigationActionRoot,
+              selected: classes.BottomNavigationActionSelected
+            }}
+            icon={<MapCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="Map"
             value="map"
+            classes={{
+              root: classes.BottomNavigationActionRoot,
+              selected: classes.BottomNavigationActionSelected
+            }}
             icon={<MapCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="Diagnose"
             value="diagnose"
+            classes={{
+              root: classes.BottomNavigationActionRoot,
+              selected: classes.BottomNavigationActionSelected
+            }}
             icon={<DiagnoseCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="News"
             value="news"
+            classes={{
+              root: classes.BottomNavigationActionRoot,
+              selected: classes.BottomNavigationActionSelected
+            }}
             icon={<NewsCustomIcon/>}
           />
 
           <BottomNavigationAction
             label="Statistics"
             value="statistics"
+            classes={{
+              root: classes.BottomNavigationActionRoot,
+              selected: classes.BottomNavigationActionSelected
+            }}
             icon={<StatisticsCustomIcon/>}
           />
         </BottomNavigation>
@@ -82,4 +126,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default withStyles(styles)(withRouter(Navbar));
+export default withRouter(withStyles(styles)(Navbar));
