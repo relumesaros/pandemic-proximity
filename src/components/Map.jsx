@@ -20,6 +20,12 @@ const loadMapScript = initAutocomplete => {
   }
 };
 
+const getRandomValue = () => parseFloat(parseFloat(`0.00${Math.random().toString().split(".")[1]}`).toFixed(5));
+
+const randomIntFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 class Map extends React.Component {
   searchBox = null;
 
@@ -29,22 +35,34 @@ class Map extends React.Component {
       mapTypeControl: false,
       streetViewControl: false,
       fullscreenControl: false,
-      zoom: 17,
+      zoom: 15,
     });
 
-    const cityCircle = new window.google.maps.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      map: window.map,
-      center: { lat: 46.777386, lng: 23.61562 },
-      radius: 30,
-    });
-    cityCircle.addListener('click', () => {
-      console.error('buiacasa');
-    });
+    const position = { lat: 46.777386, lng: 23.61562 };
+
+    for (let i = 0; i < 15; i++) {
+      console.error(i % 2 === 0);
+      const center = i === 0 ? position : {
+        lat: i % 2 === 0 ? position.lat + getRandomValue() : position.lat - getRandomValue(),
+        lng: i % 2 === 0 ? position.lng + getRandomValue() : position.lng - getRandomValue()
+      };
+      const radius = i === 0 ? 40 : randomIntFromInterval(20, 100);
+      const cityCircle = new window.google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 1,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: window.map,
+        center,
+        radius
+      });
+
+      cityCircle.addListener('click', () => {
+        console.error('buiacasa');
+      });
+    }
+
 
     const input = document.getElementById('pac-input');
 
@@ -123,7 +141,7 @@ class Map extends React.Component {
           type="text"
           placeholder="Search Box"
         />
-        <MapWrapper id="map" />
+        <MapWrapper id="map"/>
       </>
     );
   }
