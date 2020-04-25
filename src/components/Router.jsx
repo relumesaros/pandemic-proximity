@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Diagnose from './Diagnose';
+import SelfHealthCheck from './SelfHealthCheck';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -28,6 +29,10 @@ export default function App() {
 
             <Route path="/diagnose">
               <Diagnose />
+            </Route>
+
+            <Route path="/self-health-check">
+              <SelfHealthCheck />
             </Route>
 
             <Route path="/news">
