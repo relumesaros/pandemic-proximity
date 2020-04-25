@@ -4,6 +4,8 @@ body, html {
     margin: 0;
 }
 
-body div {
+#app {
+    width: 100%;
+    height: 100%;
     margin: 0;
 }
