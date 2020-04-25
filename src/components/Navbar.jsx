@@ -15,7 +15,6 @@ const NavbarWrapper = styled.div`
   bottom: 0;
   width: 100%;
   height: 90px;
-  position: fixed;
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
 
