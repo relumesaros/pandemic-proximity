@@ -4,25 +4,27 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Diagnose from './Diagnose';
 import SelfHealthCheck from './SelfHealthCheck';
-import Home from "./Home";
+import Home from './Home';
 import Statistics from './Statistics';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+`;
+
+const ContentWrapper = styled.div`
+  overflow: auto;
+  height: calc(100% - 90px);
 `;
 
 export default function App() {
   return (
     <Router>
       <RouterContentWrapper>
-        <div>
+        <ContentWrapper>
           <Switch>
             <Route exact path="/">
-              <Home/>
+              <Home />
             </Route>
 
             <Route path="/map">
@@ -45,7 +47,7 @@ export default function App() {
               <Statistics />
             </Route>
           </Switch>
-        </div>
+        </ContentWrapper>
 
         <Navbar />
       </RouterContentWrapper>

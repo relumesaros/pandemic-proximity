@@ -12,8 +12,10 @@ import NewsCustomIcon from '../customIcons/NewsCustomIcon';
 import StatisticsCustomIcon from '../customIcons/StatisticsCustomIcon';
 
 const NavbarWrapper = styled.div`
+  position: fixed;
   bottom: 0;
   width: 100%;
+  background: white;
   height: 90px;
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
