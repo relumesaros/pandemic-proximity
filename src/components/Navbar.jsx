@@ -6,13 +6,15 @@ import { withRouter } from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/Home';
 
 import MapCustomIcon from '../customIcons/MapCustomIcon';
-import DiagnoseCustomIcon from "../customIcons/DiagnoseCustomIcon";
-import NewsCustomIcon from "../customIcons/NewsCustomIcon";
-import StatisticsCustomIcon from "../customIcons/StatisticsCustomIcon";
+import DiagnoseCustomIcon from '../customIcons/DiagnoseCustomIcon';
+import NewsCustomIcon from '../customIcons/NewsCustomIcon';
+import StatisticsCustomIcon from '../customIcons/StatisticsCustomIcon';
 
 const NavbarWrapper = styled.div`
+  bottom: 0;
   width: 100%;
   height: 90px;
+  position: fixed;
   border-top: solid 1px rgba(0, 0, 0, 0.1);
 `;
 
@@ -27,6 +29,7 @@ class Navbar extends React.Component {
 
     const path = value === 'home' ? '' : value;
 
+    // eslint-disable-next-line react/prop-types
     this.props.history.push(`/${path}`);
   };
 
@@ -39,31 +42,31 @@ class Navbar extends React.Component {
           <BottomNavigationAction
             label="Home"
             value="home"
-            icon={<HomeIcon/>}
+            icon={<HomeIcon />}
           />
 
           <BottomNavigationAction
             label="Map"
             value="map"
-            icon={<MapCustomIcon/>}
+            icon={<MapCustomIcon />}
           />
 
           <BottomNavigationAction
             label="Diagnose"
             value="diagnose"
-            icon={<DiagnoseCustomIcon/>}
+            icon={<DiagnoseCustomIcon />}
           />
 
           <BottomNavigationAction
             label="News"
             value="news"
-            icon={<NewsCustomIcon/>}
+            icon={<NewsCustomIcon />}
           />
 
           <BottomNavigationAction
             label="Statistics"
             value="statistics"
-            icon={<StatisticsCustomIcon/>}
+            icon={<StatisticsCustomIcon />}
           />
         </BottomNavigation>
       </NavbarWrapper>
