@@ -32,7 +32,7 @@ const HomeStatusContentWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
 `;
 
 const ButtonGood = styled.div`
