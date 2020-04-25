@@ -12,7 +12,7 @@ export default props => {
         fill="none"
         fillRule="evenodd"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       >
         <g
           id="home"
