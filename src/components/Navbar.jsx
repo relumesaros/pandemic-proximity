@@ -44,10 +44,17 @@ const styles = {
     ...BottomNavigationActionStyle,
   },
 };
+
 class Navbar extends React.Component {
-  state = {
-    value: 'home',
-  };
+  constructor(props) {
+    super(props);
+
+    const { pathname } = this.props.location;
+
+    this.state = {
+      value: pathname.replace(/\//g, ''),
+    };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });

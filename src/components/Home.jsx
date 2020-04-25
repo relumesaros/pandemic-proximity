@@ -98,7 +98,7 @@ const HealthCheckTextWrapper = styled.p`
 
 const HomeFooterWrapper = styled.div`
   background: #f9fcff;
-  padding: 0 24px 30px 24px;
+  padding: 0 24px 120px 24px;
   border-top-right-radius: 24px;
   border-top-left-radius: 24px;
 `;

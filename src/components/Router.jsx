@@ -7,6 +7,7 @@ import SelfHealthCheck from './SelfHealthCheck';
 import Home from './Home';
 import Statistics from './Statistics';
 import News from './News';
+import Map from './Map';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -29,7 +30,7 @@ export default function App() {
             </Route>
 
             <Route path="/map">
-              <p>map</p>
+              <Map />
             </Route>
 
             <Route path="/diagnose">
