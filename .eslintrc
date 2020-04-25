@@ -13,6 +13,7 @@
   },
   "root": true,
   "rules": {
+    "react/destructuring-assignment": ["warn"],
     "react/self-closing-comp": [
       "warn",
       {
