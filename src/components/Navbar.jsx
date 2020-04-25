@@ -28,7 +28,7 @@ class Navbar extends React.Component {
     return (
       <NavbarWrapper>
         <BottomNavigation value={value} onChange={this.handleChange}>
-          <Link to="/home">
+          <Link to="/">
             <BottomNavigationAction
               label="Home"
               value="home"

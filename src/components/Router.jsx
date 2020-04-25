@@ -17,7 +17,7 @@ export default function App() {
       <RouterContentWrapper>
         <div>
           <Switch>
-            <Route path="/home">
+            <Route exact path="/">
               <p>home</p>
             </Route>
 
