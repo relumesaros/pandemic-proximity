@@ -19,7 +19,6 @@ class Navbar extends React.Component {
   };
 
   handleChange = (event, value) => {
-    console.error('value', value);
     this.setState({ value });
   };
 
