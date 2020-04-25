@@ -1,11 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import profileImageSrc from '../assests/profile.jpg';
 import checkYourAreaSrc from '../assests/checkYourArea.png';
 import preventCovid from '../assests/preventCovid.png';
 import FaceSmileCustomIcon from '../customIcons/FaceSmileCustomIcon';
 import FaceSadCustomIcon from '../customIcons/FaceSadCustomIcon';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const HomeWrapper = styled.div`
   background: rgba(47, 123, 255, 0.79);
