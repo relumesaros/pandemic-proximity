@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import Diagnose from './Diagnose';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -26,7 +27,7 @@ export default function App() {
             </Route>
 
             <Route path="/diagnose">
-              <p>diagnose</p>
+              <Diagnose />
             </Route>
 
             <Route path="/news">
