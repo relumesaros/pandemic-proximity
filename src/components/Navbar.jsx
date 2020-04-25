@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home';
+
+import MapCustomIcon from '../customIcons/MapCustomIcon';
+import DiagnoseCustomIcon from "../customIcons/DiagnoseCustomIcon";
+import NewsCustomIcon from "../customIcons/NewsCustomIcon";
+import StatisticsCustomIcon from "../customIcons/StatisticsCustomIcon";
 
 const NavbarWrapper = styled.div`
   width: 100%;
@@ -19,7 +22,12 @@ class Navbar extends React.Component {
   };
 
   handleChange = (event, value) => {
+    console.error('value', value);
     this.setState({ value });
+
+    const path = value === 'home' ? '' : value;
+
+    this.props.history.push(`/${path}`);
   };
 
   render() {
@@ -27,50 +35,40 @@ class Navbar extends React.Component {
 
     return (
       <NavbarWrapper>
-        <BottomNavigation value={value} onChange={this.handleChange}>
-          <Link to="/">
-            <BottomNavigationAction
-              label="Home"
-              value="home"
-              icon={<RestoreIcon />}
-            />
-          </Link>
+        <BottomNavigation value={value} onChange={this.handleChange} showLabels>
+          <BottomNavigationAction
+            label="Home"
+            value="home"
+            icon={<HomeIcon/>}
+          />
 
-          <Link to="/map">
-            <BottomNavigationAction
-              label="Map"
-              value="map"
-              icon={<LocationOnIcon />}
-            />
-          </Link>
+          <BottomNavigationAction
+            label="Map"
+            value="map"
+            icon={<MapCustomIcon/>}
+          />
 
-          <Link to="/diagnose">
-            <BottomNavigationAction
-              label="Diagnose"
-              value="diagnose"
-              icon={<FavoriteIcon />}
-            />
-          </Link>
+          <BottomNavigationAction
+            label="Diagnose"
+            value="diagnose"
+            icon={<DiagnoseCustomIcon/>}
+          />
 
-          <Link to="/news">
-            <BottomNavigationAction
-              label="News"
-              value="news"
-              icon={<FavoriteIcon />}
-            />
-          </Link>
+          <BottomNavigationAction
+            label="News"
+            value="news"
+            icon={<NewsCustomIcon/>}
+          />
 
-          <Link to="/statistics">
-            <BottomNavigationAction
-              label="Folder"
-              value="folder"
-              icon={<FavoriteIcon />}
-            />
-          </Link>
+          <BottomNavigationAction
+            label="Statistics"
+            value="statistics"
+            icon={<StatisticsCustomIcon/>}
+          />
         </BottomNavigation>
       </NavbarWrapper>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
