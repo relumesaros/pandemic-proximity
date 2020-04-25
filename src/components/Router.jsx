@@ -1,12 +1,6 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 
 const NavigationBarWrapper = styled.div`
   background: yellow;
@@ -40,13 +34,13 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/about">
-            <About/>
+            <About />
           </Route>
           <Route path="/users">
-            <Users/>
+            <Users />
           </Route>
           <Route path="/">
-            <Home/>
+            <Home />
           </Route>
         </Switch>
       </div>
