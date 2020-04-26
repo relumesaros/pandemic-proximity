@@ -5,18 +5,8 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
+import { ButtonBlueFilled, ContainerWrapper, SubTitle, Title } from "./CommonComponent";
 
-const DiagnoseTitle = styled.h1`
-  color: #272d40;
-  font-size: 24px;
-  font-weight: bold;
-`;
-
-const DiagnoseSubTitle = styled.p`
-  color: #272d40;
-  font-size: 14px;
-  margin: 5px 0;
-`;
 
 const CardTitle = styled.p`
   color: #272d40;
@@ -30,12 +20,6 @@ const CardSubTitle = styled.p`
   font-size: 14px;
 `;
 
-const DiagnoseWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-`;
 
 const useStyles = makeStyles(theme => ({
   buttonBlue: {
@@ -87,51 +71,41 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  container: {
-    padding: '0 24px 20px 24px',
-    height: '100%',
-  },
 }));
 
 const Diagnose = () => {
   const classes = useStyles();
 
   return (
-    <>
-      <Container maxWidth="sm" className={classes.container}>
-        <DiagnoseWrapper>
-          <div>
-            <DiagnoseTitle>Diagnose</DiagnoseTitle>
-            <DiagnoseSubTitle>
-              Have a big impact in your Community.
-            </DiagnoseSubTitle>
-            <DiagnoseSubTitle>
-              Help us to prevent the spread of COVID-19
-            </DiagnoseSubTitle>
+    <ContainerWrapper>
+      <div>
+        <Title>Diagnose</Title>
+        <SubTitle>
+          Have a big impact in your Community.
+        </SubTitle>
+        <SubTitle>
+          Help us to prevent the spread of COVID-19
+        </SubTitle>
 
-            <div className={classes.buttons}>
-              <Link to="/self-health-check">
-                <Button variant="outlined" className={classes.buttonBlue}>
-                  Self Health Check
-                </Button>
-              </Link>
-              <Button variant="outlined" className={classes.buttonRed}>
-                Mark yourself as infected
-              </Button>
-            </div>
-          </div>
-          <Card variant="outlined" className={classes.card}>
-            <CardTitle>Quick Test Kit</CardTitle>
-            <CardSubTitle>
-              You can request a COVID-19 Quick Test Kit for 20 €
-            </CardSubTitle>
-            <Button variant="contained" className={classes.buttonBlueFilled}>
-              Request a Quick Test Kit
+        <div className={classes.buttons}>
+          <Link to="/self-health-check">
+            <Button variant="outlined" className={classes.buttonBlue}>
+              Self Health Check
             </Button>
-          </Card>
-        </DiagnoseWrapper>
-      </Container>
-    </>
+          </Link>
+          <Button variant="outlined" className={classes.buttonRed}>
+            Mark yourself as infected
+          </Button>
+        </div>
+      </div>
+      <Card variant="outlined" className={classes.card}>
+        <CardTitle>Quick Test Kit</CardTitle>
+        <CardSubTitle>
+          You can request a COVID-19 Quick Test Kit for 20 €
+        </CardSubTitle>
+        <ButtonBlueFilled content="Request a Quick Test Kit"/>
+      </Card>
+    </ContainerWrapper>
   );
 };
 

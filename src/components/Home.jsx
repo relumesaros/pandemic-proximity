@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { makeStyles } from '@material-ui/core/styles/index';
 import { Link } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
 import profileImageSrc from '../assests/profile.jpg';
 import checkYourAreaSrc from '../assests/checkYourArea.png';
 import preventCovid from '../assests/preventCovid.png';
 import FaceSmileCustomIcon from '../customIcons/FaceSmileCustomIcon';
 import FaceSadCustomIcon from '../customIcons/FaceSadCustomIcon';
+import { ContainerWrapper, ContainerWrapperNoPadding } from "./CommonComponent";
 
 const HomeWrapper = styled.div`
   background: rgba(47, 123, 255, 0.79);
@@ -105,17 +104,10 @@ const HomeFooterWrapper = styled.div`
   border-top-left-radius: 24px;
 `;
 
-const useStyles = makeStyles(() => ({
-  container: {
-    padding: '0 0px',
-  },
-}));
-
 const Home = () => {
-  const classes = useStyles();
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
+    <ContainerWrapperNoPadding>
       <HomeWrapper>
         <HomeStatusWrapper>
           <HomeStatusContentWrapper>
@@ -152,7 +144,7 @@ const Home = () => {
           </Link>
         </HomeFooterWrapper>
       </HomeWrapper>
-    </Container>
+    </ContainerWrapperNoPadding>
   );
 };
 
