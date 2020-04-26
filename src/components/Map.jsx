@@ -126,22 +126,11 @@ class Map extends React.Component {
     });
   };
 
-  initAutocomplete = async () => {
-    await positionService.populatePositions();
-    this.positions = positionService.getPositions();
-
-    window.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: this.positions[0].center,
-      mapTypeControl: false,
-      streetViewControl: false,
-      fullscreenControl: false,
-      zoom: 16,
-    });
-
-    const positionsLength = this.positions.length;
+  populateCircles = positions => {
+    const positionsLength = positions.length;
 
     for (let i = 0; i < positionsLength; i++) {
-      const position = this.positions[i];
+      const position = positions[i];
       this.circles[i] = new window.google.maps.Circle({
         strokeColor: '#FF6496',
         strokeOpacity: 0.8,
@@ -155,6 +144,21 @@ class Map extends React.Component {
 
       this.circles[i].addListener('click', () => this.selectCircle(i));
     }
+  };
+
+  initAutocomplete = async () => {
+    await positionService.populatePositions({ centerEnforced: false });
+    this.positions = positionService.getPositions();
+
+    window.map = new window.google.maps.Map(document.getElementById('map'), {
+      center: this.positions[0].center,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      zoom: 16,
+    });
+
+    this.populateCircles(this.positions);
 
     const input = document.getElementById('pac-input');
 
@@ -173,7 +177,7 @@ class Map extends React.Component {
 
     let markers = [];
 
-    this.searchBox.addListener('places_changed', () => {
+    this.searchBox.addListener('places_changed', async () => {
       const places = this.searchBox.getPlaces();
 
       if (places.length === 0) {
@@ -188,34 +192,47 @@ class Map extends React.Component {
 
       // For each place, get the icon, name and location.
       const bounds = new window.google.maps.LatLngBounds();
-      places.forEach(place => {
-        if (!place.geometry) {
-          return;
-        }
-        const icon = {
-          url: place.icon,
-          size: new window.google.maps.Size(71, 71),
-          origin: new window.google.maps.Point(0, 0),
-          anchor: new window.google.maps.Point(17, 34),
-          scaledSize: new window.google.maps.Size(25, 25),
-        };
 
-        // Create a marker for each place.
-        markers.push(
-          new window.google.maps.Marker({
-            map: window.map,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
+      if (places.length > 1) {
+        return;
+      }
+      const place = places[0];
+      if (!place.geometry) {
+        return;
+      }
+      const icon = {
+        url: place.icon,
+        size: new window.google.maps.Size(71, 71),
+        origin: new window.google.maps.Point(0, 0),
+        anchor: new window.google.maps.Point(17, 34),
+        scaledSize: new window.google.maps.Size(25, 25),
+      };
 
-        if (place.geometry.viewport) {
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
+      // Create a marker for each place.
+      markers.push(
+        new window.google.maps.Marker({
+          map: window.map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
+
+      if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+
+      this.onCloseCircleStatistic();
+      await positionService.populatePositions({
+        centerEnforced: {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        },
       });
+      this.populateCircles(this.positions);
+
       window.map.fitBounds(bounds);
     });
   };
