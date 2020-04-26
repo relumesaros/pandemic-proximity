@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { withRouter } from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
 
+import HomeCustomIcon from '../customIcons/HomeCustomIcon';
 import MapCustomIcon from '../customIcons/MapCustomIcon';
 import DiagnoseCustomIcon from '../customIcons/DiagnoseCustomIcon';
 import NewsCustomIcon from '../customIcons/NewsCustomIcon';
@@ -40,7 +40,7 @@ const styles = {
     ...BottomNavigationActionStyle,
   },
   BottomNavigationActionSelected: {
-    color: '#272D40',
+    color: '#3B84FF',
     ...BottomNavigationActionStyle,
   },
 };
@@ -85,7 +85,7 @@ class Navbar extends React.Component {
               root: classes.BottomNavigationActionRoot,
               selected: classes.BottomNavigationActionSelected,
             }}
-            icon={<HomeIcon />}
+            icon={<HomeCustomIcon />}
           />
 
           <BottomNavigationAction
