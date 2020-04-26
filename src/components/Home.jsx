@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 import profileImageSrc from '../assests/profile.jpg';
 import checkYourAreaSrc from '../assests/checkYourArea.png';
 import preventCovid from '../assests/preventCovid.png';
@@ -105,42 +106,44 @@ const HomeFooterWrapper = styled.div`
 
 const Home = () => {
   return (
-    <HomeWrapper>
-      <HomeStatusWrapper>
-        <HomeStatusContentWrapper>
-          <HomeStatusTextWrapper>
-            <HelloWrapper>Hello Ruben!</HelloWrapper>
-            <HealthCheckTextWrapper>
-              How is you health at the moment?
-            </HealthCheckTextWrapper>
-          </HomeStatusTextWrapper>
-          <HomeStatusImageWrapper src={profileImageSrc} />
-        </HomeStatusContentWrapper>
+    <Container maxWidth="sm">
+      <HomeWrapper>
+        <HomeStatusWrapper>
+          <HomeStatusContentWrapper>
+            <HomeStatusTextWrapper>
+              <HelloWrapper>Hello Ruben!</HelloWrapper>
+              <HealthCheckTextWrapper>
+                How is you health at the moment?
+              </HealthCheckTextWrapper>
+            </HomeStatusTextWrapper>
+            <HomeStatusImageWrapper src={profileImageSrc} />
+          </HomeStatusContentWrapper>
 
-        <ButtonWrapper>
-          <ButtonGood>
-            <FaceSmileCustomIcon />
-            <ButtonTextWrapper>GOOD</ButtonTextWrapper>
-          </ButtonGood>
+          <ButtonWrapper>
+            <ButtonGood>
+              <FaceSmileCustomIcon />
+              <ButtonTextWrapper>GOOD</ButtonTextWrapper>
+            </ButtonGood>
 
-          <Link to="/diagnose">
-            <ButtonBad>
-              <FaceSadCustomIcon />
-              <ButtonTextWrapper>Bad</ButtonTextWrapper>
-            </ButtonBad>
+            <Link to="/diagnose">
+              <ButtonBad>
+                <FaceSadCustomIcon />
+                <ButtonTextWrapper>Bad</ButtonTextWrapper>
+              </ButtonBad>
+            </Link>
+          </ButtonWrapper>
+        </HomeStatusWrapper>
+
+        <HomeFooterWrapper>
+          <Link to="/map">
+            <CheckYourAreaImageWrapper src={checkYourAreaSrc} />
           </Link>
-        </ButtonWrapper>
-      </HomeStatusWrapper>
-
-      <HomeFooterWrapper>
-        <Link to="/map">
-          <CheckYourAreaImageWrapper src={checkYourAreaSrc} />
-        </Link>
-        <Link to="/diagnose">
-          <PreventCovidImageWrapper src={preventCovid} />
-        </Link>
-      </HomeFooterWrapper>
-    </HomeWrapper>
+          <Link to="/diagnose">
+            <PreventCovidImageWrapper src={preventCovid} />
+          </Link>
+        </HomeFooterWrapper>
+      </HomeWrapper>
+    </Container>
   );
 };
 
