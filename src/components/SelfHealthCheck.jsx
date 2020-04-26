@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import withStyles from '@material-ui/core/es/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { ButtonBlueFilled, ButtonWhiteUnfilled, ContainerWrapper, SubTitle, Title } from "./CommonComponent";
-import withStyles from "@material-ui/core/es/styles/withStyles";
-
+import {
+  ButtonBlueFilled,
+  ButtonWhiteUnfilled,
+  ContainerWrapper,
+  SubTitle,
+  Title,
+} from './CommonComponent';
 
 const GridWrapper = styled.div`
   margin-top: 20px;
 `;
 
-
 const PeriodExpieriencingQuestion = styled.p`
-  color: #272D40;
+  color: #272d40;
   font-size: 14px;
 `;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    'margin': '40px 0 0 5%',
+    margin: '40px 0 0 5%',
     width: '90%',
   },
   button: {
@@ -60,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   sliderContainer: {},
   slider: {
     width: '85%',
-    color: '#2D74FF'
+    color: '#2D74FF',
   },
   container: {
     padding: '0 24px 20px 24px',
@@ -85,7 +88,8 @@ const IOSSlider = withStyles({
     marginTop: -14,
     marginLeft: -14,
     '&:focus, &:hover, &$active': {
-      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      boxShadow:
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: iOSBoxShadow,
@@ -125,21 +129,21 @@ const SelfHealthCheck = () => {
   const classes = useStyles();
 
   const marks = [
-    { value: 0, label: 'Today', },
-    { value: 1, },
-    { value: 2, label: '2', },
-    { value: 3, label: '3', },
-    { value: 4, label: '4', },
-    { value: 5, label: '5', },
-    { value: 6, label: '6', },
-    { value: 7, label: '7', },
+    { value: 0, label: 'Today' },
+    { value: 1 },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+    { value: 4, label: '4' },
+    { value: 5, label: '5' },
+    { value: 6, label: '6' },
+    { value: 7, label: '7' },
     { value: 8, label: '8' },
     { value: 9, label: '9' },
     { value: 10, label: '10' },
     { value: 11, label: '11' },
     { value: 12, label: '12' },
-    { value: 13},
-    { value: 14, label: '+14 days' }
+    { value: 13 },
+    { value: 14, label: '+14 days' },
   ];
 
   // eslint-disable-next-line no-unused-vars
@@ -164,7 +168,11 @@ const SelfHealthCheck = () => {
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.fever ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.fever
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -180,7 +188,11 @@ const SelfHealthCheck = () => {
             </Grid>
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.couch ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.couch
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -196,7 +208,11 @@ const SelfHealthCheck = () => {
             </Grid>
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.soreThroat ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.soreThroat
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -213,7 +229,11 @@ const SelfHealthCheck = () => {
 
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.difficultyBreathing ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.difficultyBreathing
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -231,7 +251,11 @@ const SelfHealthCheck = () => {
 
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.tiredness ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.tiredness
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -248,7 +272,11 @@ const SelfHealthCheck = () => {
 
             <Grid item xs={6}>
               <Button
-                className={healthState.symptoms.musclePain ? classes.symptomsButtonSelected : classes.symptomsButtonRoot}
+                className={
+                  healthState.symptoms.musclePain
+                    ? classes.symptomsButtonSelected
+                    : classes.symptomsButtonRoot
+                }
                 variant="outlined"
                 onClick={() =>
                   setHealthSate({
@@ -265,11 +293,11 @@ const SelfHealthCheck = () => {
           </Grid>
         </GridWrapper>
 
-        <PeriodExpieriencingQuestion>How long have you been experiencing these
-          symptoms?</PeriodExpieriencingQuestion>
+        <PeriodExpieriencingQuestion>
+          How long have you been experiencing these symptoms?
+        </PeriodExpieriencingQuestion>
 
         <div className={classes.root}>
-
           <IOSSlider
             aria-label="ios slider"
             defaultValue={0}
@@ -279,25 +307,13 @@ const SelfHealthCheck = () => {
             min={0}
             max={14}
           />
-
-          {/*<Slider*/}
-          {/*className={classes.slider}*/}
-          {/*defaultValue={0}*/}
-          {/*aria-labelledby="discrete-slider-custom"*/}
-          {/*step={1}*/}
-          {/*valueLabelDisplay="auto"*/}
-          {/*marks={marks}*/}
-          {/*min={0}*/}
-          {/*max={14}*/}
-          {/*/>*/}
         </div>
       </div>
 
       <div className={classes.buttons}>
-        <ButtonBlueFilled content="Send the Symptoms"/>
-        <ButtonWhiteUnfilled content="Request a Quick Test Kit"/>
+        <ButtonBlueFilled content="Send the Symptoms" />
+        <ButtonWhiteUnfilled content="Request a Quick Test Kit" />
       </div>
-
     </ContainerWrapper>
   );
 };

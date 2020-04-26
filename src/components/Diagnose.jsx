@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
-import { ButtonBlueFilled, ContainerWrapper, SubTitle, Title } from "./CommonComponent";
-
+import {
+  ButtonBlueFilled,
+  ContainerWrapper,
+  SubTitle,
+  Title,
+} from './CommonComponent';
 
 const CardTitle = styled.p`
   color: #272d40;
@@ -19,7 +22,6 @@ const CardSubTitle = styled.p`
   color: #484b4d;
   font-size: 14px;
 `;
-
 
 const useStyles = makeStyles(theme => ({
   buttonBlue: {
@@ -80,12 +82,8 @@ const Diagnose = () => {
     <ContainerWrapper>
       <div>
         <Title>Diagnose</Title>
-        <SubTitle>
-          Have a big impact in your Community.
-        </SubTitle>
-        <SubTitle>
-          Help us to prevent the spread of COVID-19
-        </SubTitle>
+        <SubTitle>Have a big impact in your Community.</SubTitle>
+        <SubTitle>Help us to prevent the spread of COVID-19</SubTitle>
 
         <div className={classes.buttons}>
           <Link to="/self-health-check">
@@ -103,7 +101,7 @@ const Diagnose = () => {
         <CardSubTitle>
           You can request a COVID-19 Quick Test Kit for 20 €
         </CardSubTitle>
-        <ButtonBlueFilled content="Request a Quick Test Kit"/>
+        <ButtonBlueFilled content="Request a Quick Test Kit" />
       </Card>
     </ContainerWrapper>
   );

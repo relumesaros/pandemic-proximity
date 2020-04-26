@@ -6,7 +6,7 @@ import checkYourAreaSrc from '../assests/checkYourArea.png';
 import preventCovid from '../assests/preventCovid.png';
 import FaceSmileCustomIcon from '../customIcons/FaceSmileCustomIcon';
 import FaceSadCustomIcon from '../customIcons/FaceSadCustomIcon';
-import { ContainerWrapper, ContainerWrapperNoPadding } from "./CommonComponent";
+import { ContainerWrapperNoPadding } from './CommonComponent';
 
 const HomeWrapper = styled.div`
   background: rgba(47, 123, 255, 0.79);
@@ -105,7 +105,6 @@ const HomeFooterWrapper = styled.div`
 `;
 
 const Home = () => {
-
   return (
     <ContainerWrapperNoPadding>
       <HomeWrapper>

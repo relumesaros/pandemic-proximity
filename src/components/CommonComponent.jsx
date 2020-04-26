@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from "@material-ui/core/styles/index";
+import { makeStyles } from '@material-ui/core/styles/index';
 
 export const Title = styled.h1`
   color: #272d40;
@@ -51,9 +51,8 @@ const useButtonBlueFilledStyles = makeStyles(() => ({
     border: '1px solid #2D7CFF',
     background: 'linear-gradient(270deg, #2F7BFF 0%, #41A0FF 100%)',
     'box-shadow': '0 4px 8px 0 rgba(18,15,16,0.14)',
-  }
+  },
 }));
-
 
 export const ButtonBlueFilled = ({ content }) => {
   const classes = useButtonBlueFilledStyles();
@@ -61,7 +60,7 @@ export const ButtonBlueFilled = ({ content }) => {
     <Button variant="contained" className={classes.buttonBlueFilled}>
       {content}
     </Button>
-  )
+  );
 };
 
 const useButtonWhiteUnfilledStyles = makeStyles(() => ({
@@ -75,10 +74,9 @@ const useButtonWhiteUnfilledStyles = makeStyles(() => ({
     width: '100%',
     border: 'none',
     background: '#fff',
-    'box-shadow': 'none'
-  }
+    'box-shadow': 'none',
+  },
 }));
-
 
 export const ButtonWhiteUnfilled = ({ content }) => {
   const classes = useButtonWhiteUnfilledStyles();
@@ -86,5 +84,5 @@ export const ButtonWhiteUnfilled = ({ content }) => {
     <Button variant="contained" className={classes.buttonBlueFilled}>
       {content}
     </Button>
-  )
+  );
 };
