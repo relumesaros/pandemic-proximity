@@ -8,6 +8,15 @@ const useStyles = makeStyles(() => ({
   chartContainer: {
     height: '16rem',
   },
+  container: {
+    position: 'relative',
+  },
+  flag: {
+    height: '2rem',
+    position: 'absolute',
+    right: '1rem',
+    top: '0.3rem',
+  },
 }));
 
 const Statistics = () => {
@@ -48,9 +57,16 @@ const Statistics = () => {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.container}>
         <h1>Statistics</h1>
-        <p>Daily new cases</p>
+
+        <img
+          className={classes.flag}
+          src="https://www.countryflags.io/ro/flat/64.png"
+          alt="romania"
+        />
+
+        <p>Daily new cases in</p>
 
         <Box className={classes.chartContainer}>
           <Chart data={data} axes={axes} tooltip />
