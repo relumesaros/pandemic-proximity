@@ -100,8 +100,8 @@ class Map extends React.Component {
     });
     const { radius } = this.positions[circleIndex];
     this.setState({
-      infected: parseInt(radius * 0.8, 10),
-      symptoms: parseInt(radius * 0.4, 10),
+      infected: parseInt(radius * 0.4, 10),
+      symptoms: parseInt(radius * 0.2, 10),
       showCircleStatistics: true,
     });
   };
