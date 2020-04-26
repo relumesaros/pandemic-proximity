@@ -94,10 +94,12 @@ class Map extends React.Component {
   selectCircle = circleIndex => {
     this.onResetCircleStatistic();
     this.circles[circleIndex].setOptions({
-      strokeWeight: 2,
+      strokeWeight: 4,
       fillColor: '#ff0017',
       fillOpacity: 0.45,
+      strokeColor: '#684444'
     });
+
     const { radius } = this.positions[circleIndex];
     this.setState({
       infected: parseInt(radius * 0.4, 10),
@@ -109,8 +111,9 @@ class Map extends React.Component {
   onResetCircleStatistic = () => {
     this.circles.forEach(circle => {
       circle.setOptions({
-        strokeWeight: 1,
+        strokeWeight: 2,
         fillColor: '#ff9eb8',
+        strokeColor: '#FF6496',
         fillOpacity: 0.35,
       });
     });
@@ -134,7 +137,7 @@ class Map extends React.Component {
       this.circles[i] = new window.google.maps.Circle({
         strokeColor: '#FF6496',
         strokeOpacity: 0.8,
-        strokeWeight: 1,
+        strokeWeight: 2,
         fillColor: '#ff9eb8',
         fillOpacity: 0.35,
         map: window.map,
@@ -248,7 +251,7 @@ class Map extends React.Component {
           id="pac-input"
           className="controls"
           type="text"
-          placeholder="Search Box"
+          placeholder="Search for an Area"
         />
         <GoogleMapWrapper id="map" />
         {this.state.showCircleStatistics && (
