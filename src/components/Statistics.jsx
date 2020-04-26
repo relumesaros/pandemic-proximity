@@ -3,15 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Chart } from 'react-charts';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Typography from '@material-ui/core/Typography';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 import countries from '../service/countriesService';
 
 const useStyles = makeStyles(() => ({
@@ -87,7 +87,6 @@ const Statistics = () => {
   const selectCountry = event => {
     setCountry({ selected: event.target.value });
   };
-
   const axes = React.useMemo(
     () => [
       { primary: true, type: 'time', position: 'bottom' },
@@ -97,132 +96,129 @@ const Statistics = () => {
   );
 
   return (
-    <>
-      <Container maxWidth="sm" className={classes.container}>
-        <h1>Statistics</h1>
+    <Container maxWidth="sm" className={classes.container}>
+      <h1>Statistics</h1>
 
-        <img
-          className={classes.flag}
-          src={`https://www.countryflags.io/${country.selected.toLowerCase()}/flat/64.png`}
-          alt="romania"
-        />
+      <img
+        className={classes.flag}
+        src={`https://www.countryflags.io/${country.selected.toLowerCase()}/flat/64.png`}
+        alt="romania"
+      />
 
-        <FormControl
-          variant="outlined"
-          className={[classes.formControl, classes.countrySelector].join(' ')}
+      <FormControl
+        variant="outlined"
+        className={[classes.formControl, classes.countrySelector].join(' ')}
+      >
+        <InputLabel id="demo-simple-select-outlined-label">
+          Country
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={country.selected}
+          onChange={selectCountry}
+          label="Age"
         >
-          <InputLabel id="demo-simple-select-outlined-label">
-            Country
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={country.selected}
-            onChange={selectCountry}
-            label="Age"
-          >
-            {countries.map(item => (
-              <MenuItem value={item.code} key={item.code}>
-                {item.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          {countries.map(item => (
+            <MenuItem value={item.code} key={item.code}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    color="primary"
-                  >
-                    11036
-                  </Typography>
-                  <Typography>Total Cases</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className={classes.red}
-                  >
-                    +401
-                  </Typography>
-                  <Typography>New Cases (24h)</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className={classes.green}
-                  >
-                    3054
-                  </Typography>
-                  <Typography>Recoveries</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className={classes.greenDark}
-                  >
-                    26,67%
-                  </Typography>
-                  <Typography>Recovery Rate</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    5.51%
-                  </Typography>
-                  <Typography>Fatality Rate</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  color="primary"
+                >
+                  11036
+                </Typography>
+                <Typography>Total Cases</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
 
-        <Box className={classes.chartContainer}>
-          <p>Daily new cases</p>
+        <Grid item xs={6}>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.red}
+                >
+                  +401
+                </Typography>
+                <Typography>New Cases (24h)</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
 
-          <Chart data={data} axes={axes} tooltip />
-        </Box>
-      </Container>
-    </>
+        <Grid item xs={6}>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.green}
+                >
+                  3054
+                </Typography>
+                <Typography>Recoveries</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.greenDark}
+                >
+                  26,67%
+                </Typography>
+                <Typography>Recovery Rate</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Card variant="outlined" className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  5.51%
+                </Typography>
+                <Typography>Fatality Rate</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      </Grid>
+
+      <Box className={classes.chartContainer}>
+        <p>Daily new cases</p>
+        <Chart data={data} axes={axes} tooltip />
+      </Box>
+    </Container>
   );
 };
 
