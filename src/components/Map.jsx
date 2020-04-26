@@ -51,11 +51,11 @@ const CircleStatisticRowWrapper = styled.div`
 const InputLocationIconWrapper = styled.img`
   position: absolute;
   height: 38px;
-  top: 15px;
+  top: 16px;
   width: 40px;
   border-radius: 12px;
   background-color: #e7eff6;
-  right: calc(5% + 15px);
+  right: calc(5% + 5px);
   z-index: 2222;
 `;
 
