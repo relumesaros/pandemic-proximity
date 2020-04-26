@@ -46,27 +46,15 @@ const styles = {
 };
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const { pathname } = this.props.location;
-
-    let value = pathname.replace(/\//g, '');
-    value = value === '' ? 'home' : value;
-    this.state = {
-      value,
-    };
-  }
-
   handleChange = (event, value) => {
-    this.setState({ value });
-    const path = value === 'home' ? '' : value;
-    this.props.history.push(`/${path}`);
+    this.props.history.push(`/${value}`);
   };
 
   render() {
-    const { value } = this.state;
     const { classes } = this.props;
+
+    const { pathname } = this.props.location;
+    const value = pathname.replace(/\//g, '');
 
     return (
       <NavbarWrapper>
@@ -80,7 +68,7 @@ class Navbar extends React.Component {
         >
           <BottomNavigationAction
             label="Home"
-            value="home"
+            value=""
             classes={{
               root: classes.BottomNavigationActionRoot,
               selected: classes.BottomNavigationActionSelected,
