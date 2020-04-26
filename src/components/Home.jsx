@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles/index';
 import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import profileImageSrc from '../assests/profile.jpg';
@@ -104,9 +105,17 @@ const HomeFooterWrapper = styled.div`
   border-top-left-radius: 24px;
 `;
 
+const useStyles = makeStyles(() => ({
+  container: {
+    padding: '0 0px',
+  },
+}));
+
 const Home = () => {
+  const classes = useStyles();
+
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" className={classes.container}>
       <HomeWrapper>
         <HomeStatusWrapper>
           <HomeStatusContentWrapper>
