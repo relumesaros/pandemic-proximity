@@ -69,7 +69,7 @@ const populatePositions = async () => {
     let latRandom;
     let lngRandom;
 
-    const offset = 300;
+    const offset = 200;
     const latOffsetPlus = parseInt(lat * 10000, 10) + offset;
     const latOffsetMinus = parseInt(lat * 10000, 10) - offset;
     const lngOffsetPlus = parseInt(lng * 10000, 10) + offset;
@@ -92,7 +92,7 @@ const populatePositions = async () => {
       lat: latRandom / 10000,
       lng: lngRandom / 10000,
     };
-    const radius = randomIntFromInterval(700, 1000);
+    const radius = randomIntFromInterval(400, 800);
 
     positions[i] = {
       center: centerNew,
