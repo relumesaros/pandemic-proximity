@@ -11,7 +11,7 @@
 
 - Fake news
   - crawler goes in websites and other reliable sources(ex. WHO)
-  - doctors and login, checked that they are eligible, can comment, they can vote or upvote other comments
+  - doctors login and after being checked for eligibility, they can comment, vote or upvote other comments
 - Map with tracking infections proximity
   - Google maps with infection rate proximity
     - Proximity will be represented with a circle between 100m to 200m(GPS position within 100 meters of the real user location)
