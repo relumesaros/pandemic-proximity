@@ -14,6 +14,15 @@ const useStyles = makeStyles(() => ({
     borderRadius: '20px',
     margin: '1rem auto',
   },
+  container: {
+    position: 'relative',
+  },
+  flag: {
+    height: '2rem',
+    position: 'absolute',
+    right: '1rem',
+    top: '0.3rem',
+  },
 }));
 
 const News = () => {
@@ -55,8 +64,15 @@ const News = () => {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.container}>
         <h1>News</h1>
+
+        <img
+          className={classes.flag}
+          src="https://www.countryflags.io/ro/flat/64.png"
+          alt="romania"
+        />
+
         <p>
           The latest news from World Health Organization and your guvernment
         </p>
