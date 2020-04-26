@@ -109,9 +109,7 @@ const Statistics = () => {
         variant="outlined"
         className={[classes.formControl, classes.countrySelector].join(' ')}
       >
-        <InputLabel id="demo-simple-select-outlined-label">
-          Country
-        </InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Country</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
