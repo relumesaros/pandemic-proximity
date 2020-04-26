@@ -52,7 +52,6 @@ const SelfHealthCheck = () => {
     },
   ];
 
-  // eslint-disable-next-line no-unused-vars
   const [healthState, setHealthSate] = useState({
     symptoms: {
       fever: false,

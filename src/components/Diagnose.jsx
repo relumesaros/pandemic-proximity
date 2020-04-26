@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     borderColor: '#5384AA',
     borderRadius: '20px',
     margin: '0 auto',
+    marginTop: '2rem',
     width: '90%',
   },
   paper: {
