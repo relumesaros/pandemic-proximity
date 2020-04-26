@@ -93,7 +93,7 @@ class Map extends React.Component {
 
   selectCircle = circleIndex => {
     this.onResetCircleStatistic();
-    this.circles[circleIndex].setOptions({ strokeWeight: 2 });
+    this.circles[circleIndex].setOptions({ strokeWeight: 2, fillColor: '#ff0017', fillOpacity: 0.45 });
     const { radius } = this.positions[circleIndex];
     this.setState({
       infected: parseInt(radius * 0.8, 10),
@@ -104,7 +104,7 @@ class Map extends React.Component {
 
   onResetCircleStatistic = () => {
     this.circles.forEach(circle => {
-      circle.setOptions({ strokeWeight: 1 });
+      circle.setOptions({ strokeWeight: 1, fillColor: '#ff9eb8', fillOpacity: 0.35 });
     });
   };
 
