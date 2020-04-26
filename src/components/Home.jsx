@@ -9,6 +9,7 @@ import FaceSadCustomIcon from '../customIcons/FaceSadCustomIcon';
 import { ContainerWrapperNoPadding } from './CommonComponent';
 
 const HomeWrapper = styled.div`
+  padding: 20px 0 0 0;
   background: rgba(47, 123, 255, 0.79);
   height: 100%;
   display: flex;

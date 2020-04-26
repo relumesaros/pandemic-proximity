@@ -33,7 +33,6 @@ export const ContainerWrapperNoPadding = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   height: 100%;
-  padding: 0;
   max-width: 500px;
   margin: 0 auto;
 `;
