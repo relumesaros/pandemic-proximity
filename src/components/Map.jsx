@@ -1,16 +1,74 @@
 import React from 'react';
 import styled from 'styled-components';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import SentimentDissatisfied from '@material-ui/icons/SentimentDissatisfied';
+import SentimentVeryDissatisfied from '@material-ui/icons/SentimentVeryDissatisfied';
+import config from '../config';
+import * as positionService from '../service/positionService';
 
 const MapWrapper = styled.div`
   height: 100%;
   width: 100%;
+  position: relative;
+`;
+
+const GoogleMapWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
+const SentimentVeryDissatisfiedWrapper = styled(SentimentVeryDissatisfied)`
+  color: #ff5d9d;
+`;
+
+const SentimentDissatisfiedWrapper = styled(SentimentDissatisfied)`
+  color: #f5a829;
+`;
+
+const HighlightOffIconWrapper = styled(HighlightOffIcon)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+const CircleStatisticWrapper = styled.div`
+  padding: 30px 30px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.17);
+  position: absolute;
+  bottom: 20px;
+  width: calc(80% - 60px);
+  left: 5%;
+`;
+
+const CircleStatisticRowWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CircleStatisticInfectedTextWrapper = styled.p`
+  color: #272d40;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin: 4px 0 4px 11px;
+`;
+
+const CircleStatisticSymptomsTextWrapper = styled.p`
+  color: #484b4d;
+  font-family: 'SF UI Display';
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin: 4px 0 4px 11px;
 `;
 
 const loadMapScript = initAutocomplete => {
   if (!window.google || (window.google && !window.google.maps)) {
     const index = window.document.getElementsByTagName('script')[0];
     const script = window.document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAQw7iUOQxJQYOp_XoyLJXnevV6JhF299A&libraries=places&callback=initAutocomplete`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${config.googleApiKey}&libraries=places&callback=initAutocomplete`;
     script.async = true;
     script.defer = true;
     index.parentNode.insertBefore(script, index);
@@ -20,49 +78,75 @@ const loadMapScript = initAutocomplete => {
   }
 };
 
-const getRandomValue = () => parseFloat(parseFloat(`0.00${Math.random().toString().split(".")[1]}`).toFixed(5));
-
-const randomIntFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
 class Map extends React.Component {
+  state = {
+    infected: 0,
+    symptoms: 0,
+    showCircleStatistics: false,
+  };
+
   searchBox = null;
 
-  initAutocomplete = () => {
+  positions = [];
+
+  circles = [];
+
+  selectCircle = circleIndex => {
+    this.onResetCircleStatistic();
+    this.circles[circleIndex].setOptions({ strokeWeight: 2 });
+    const { radius } = this.positions[circleIndex];
+    this.setState({
+      infected: parseInt(radius * 0.8, 10),
+      symptoms: parseInt(radius * 0.4, 10),
+      showCircleStatistics: true,
+    });
+  };
+
+  onResetCircleStatistic = () => {
+    this.circles.forEach(circle => {
+      circle.setOptions({ strokeWeight: 1 });
+    });
+  };
+
+  onCloseCircleStatistic = () => {
+    this.onResetCircleStatistic();
+    this.circles.forEach(circle => {
+      circle.setOptions({ strokeWeight: 1 });
+    });
+    this.setState({
+      showCircleStatistics: false,
+    });
+  };
+
+  initAutocomplete = async () => {
+    await positionService.populatePositions();
+    this.positions = positionService.getPositions();
+
     window.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 46.777386, lng: 23.61562 },
+      center: this.positions[0].center,
       mapTypeControl: false,
       streetViewControl: false,
       fullscreenControl: false,
-      zoom: 15,
+      zoom: 16,
     });
 
-    const position = { lat: 46.777386, lng: 23.61562 };
+    const positionsLength = this.positions.length;
 
-    for (let i = 0; i < 15; i++) {
-      console.error(i % 2 === 0);
-      const center = i === 0 ? position : {
-        lat: i % 2 === 0 ? position.lat + getRandomValue() : position.lat - getRandomValue(),
-        lng: i % 2 === 0 ? position.lng + getRandomValue() : position.lng - getRandomValue()
-      };
-      const radius = i === 0 ? 40 : randomIntFromInterval(20, 100);
-      const cityCircle = new window.google.maps.Circle({
-        strokeColor: '#FF0000',
+    for (let i = 0; i < positionsLength; i++) {
+      const position = this.positions[i];
+      this.circles[i] = new window.google.maps.Circle({
+        strokeColor: '#FF6496',
         strokeOpacity: 0.8,
         strokeWeight: 1,
-        fillColor: '#FF0000',
+        fillColor: '#ff9eb8',
         fillOpacity: 0.35,
         map: window.map,
-        center,
-        radius
+        center: position.center,
+        radius: position.radius,
       });
 
-      cityCircle.addListener('click', () => {
-        console.error('buiacasa');
-      });
+      this.circles[i].addListener('click', () => this.selectCircle(i));
     }
-
 
     const input = document.getElementById('pac-input');
 
@@ -134,15 +218,33 @@ class Map extends React.Component {
 
   render() {
     return (
-      <>
+      <MapWrapper>
         <input
           id="pac-input"
           className="controls"
           type="text"
           placeholder="Search Box"
         />
-        <MapWrapper id="map"/>
-      </>
+        <GoogleMapWrapper id="map" />
+        {this.state.showCircleStatistics && (
+          <CircleStatisticWrapper>
+            <HighlightOffIconWrapper onClick={this.onCloseCircleStatistic} />
+            <CircleStatisticRowWrapper>
+              <SentimentVeryDissatisfiedWrapper />
+              <CircleStatisticInfectedTextWrapper>
+                {this.state.infected} People Infected
+              </CircleStatisticInfectedTextWrapper>
+            </CircleStatisticRowWrapper>
+
+            <CircleStatisticRowWrapper>
+              <SentimentDissatisfiedWrapper />
+              <CircleStatisticSymptomsTextWrapper>
+                {this.state.symptoms} People with symptoms
+              </CircleStatisticSymptomsTextWrapper>
+            </CircleStatisticRowWrapper>
+          </CircleStatisticWrapper>
+        )}
+      </MapWrapper>
     );
   }
 }
