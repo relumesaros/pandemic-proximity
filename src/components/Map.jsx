@@ -5,6 +5,7 @@ import SentimentDissatisfied from '@material-ui/icons/SentimentDissatisfied';
 import SentimentVeryDissatisfied from '@material-ui/icons/SentimentVeryDissatisfied';
 import config from '../config';
 import * as positionService from '../service/positionService';
+import inputLocation from '../assests/inputLocation.png';
 
 const MapWrapper = styled.div`
   height: 100%;
@@ -45,6 +46,17 @@ const CircleStatisticWrapper = styled.div`
 const CircleStatisticRowWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const InputLocationIconWrapper = styled.img`
+  position: absolute;
+  height: 38px;
+  top: 15px;
+  width: 40px;
+  border-radius: 12px;
+  background-color: #e7eff6;
+  right: calc(5% + 15px);
+  z-index: 2222;
 `;
 
 const CircleStatisticInfectedTextWrapper = styled.p`
@@ -97,7 +109,7 @@ class Map extends React.Component {
       strokeWeight: 4,
       fillColor: '#ff0017',
       fillOpacity: 0.45,
-      strokeColor: '#684444'
+      strokeColor: '#684444',
     });
 
     const { radius } = this.positions[circleIndex];
@@ -253,6 +265,7 @@ class Map extends React.Component {
           type="text"
           placeholder="Search for an Area"
         />
+        <InputLocationIconWrapper src={inputLocation} />
         <GoogleMapWrapper id="map" />
         {this.state.showCircleStatistics && (
           <CircleStatisticWrapper>
