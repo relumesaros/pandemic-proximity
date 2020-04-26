@@ -14,14 +14,18 @@ const getInitialPosition = () =>
 
 const getRandomBinary = () => parseInt(Math.random() * 100, 10) % 2 === 0;
 
-const populatePositions = async () => {
-  if (positions.length) {
+const populatePositions = async ({ centerEnforced }) => {
+  if (positions.length && !centerEnforced) {
     return;
   }
 
-  const locationResponse = await getInitialPosition();
-
-  const center = locationResponse.location;
+  let center;
+  if (!centerEnforced) {
+    const locationResponse = await getInitialPosition();
+    center = locationResponse.location;
+  } else {
+    center = centerEnforced;
+  }
 
   positions[0] = {
     center,
