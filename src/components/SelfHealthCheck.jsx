@@ -22,6 +22,10 @@ const PeriodExpieriencingQuestion = styled.p`
   font-size: 14px;
 `;
 
+const ButtonsWrapper = styled.div`
+  margin: 10px 0;
+`;
+
 const useStyles = makeStyles(() => ({
   root: {
     margin: '40px 0 0 5%',
@@ -34,10 +38,6 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '1rem',
     textTransform: 'none',
     width: '90%',
-  },
-  buttons: {
-    height: 'auto',
-    textAlign: 'center',
   },
   symptomsButtonRoot: {
     borderRadius: '16px',
@@ -310,10 +310,10 @@ const SelfHealthCheck = () => {
         </div>
       </div>
 
-      <div className={classes.buttons}>
+      <ButtonsWrapper>
         <ButtonBlueFilled content="Send the Symptoms" />
         <ButtonWhiteUnfilled content="Request a Quick Test Kit" />
-      </div>
+      </ButtonsWrapper>
     </ContainerWrapper>
   );
 };
