@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
 import {
   ButtonBlueFilled,
@@ -11,6 +10,11 @@ import {
   Title,
 } from './CommonComponent';
 
+const CardWrapper = styled.div`
+  border-radius: 16px;
+  border: 1px solid #dae7f2;
+  padding: 16px 20px;
+`;
 const CardTitle = styled.p`
   color: #272d40;
   font-size: 18px;
@@ -64,11 +68,6 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     margin: '20px 0',
   },
-  card: {
-    borderRadius: '16px',
-    border: '1px solid #DAE7F2',
-    padding: '16px 20px',
-  },
   paper: {
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -96,13 +95,13 @@ const Diagnose = () => {
           </Button>
         </div>
       </div>
-      <Card variant="outlined" className={classes.card}>
+      <CardWrapper>
         <CardTitle>Quick Test Kit</CardTitle>
         <CardSubTitle>
           You can request a COVID-19 Quick Test Kit for 20 €
         </CardSubTitle>
         <ButtonBlueFilled content="Request a Quick Test Kit" />
-      </Card>
+      </CardWrapper>
     </ContainerWrapper>
   );
 };
