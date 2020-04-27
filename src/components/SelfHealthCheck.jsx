@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styled-components';
 import withStyles from '@material-ui/core/es/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,8 +12,9 @@ import {
   ButtonWhiteUnfilled,
   ContainerWrapper,
   SubTitle,
-  Title,
+  Title24,
 } from './CommonComponent';
+import toastrService from '../service/toastrService';
 
 const GridWrapper = styled.div`
   margin-top: 20px;
@@ -25,6 +27,12 @@ const PeriodExpieriencingQuestion = styled.p`
 
 const ButtonsWrapper = styled.div`
   margin: 10px 0;
+`;
+
+const CloseIconLinkWrapper = styled(Link)`
+  position: absolute;
+  top: 25px;
+  right: 15px;
 `;
 
 const useStyles = makeStyles(() => ({
@@ -126,7 +134,7 @@ const IOSSlider = withStyles({
   },
 })(Slider);
 
-const SelfHealthCheck = () => {
+const SelfHealthCheck = props => {
   const classes = useStyles();
 
   const marks = [
@@ -162,8 +170,12 @@ const SelfHealthCheck = () => {
 
   return (
     <ContainerWrapper>
+      <CloseIconLinkWrapper to="/diagnose">
+        <CloseIcon />
+      </CloseIconLinkWrapper>
+
       <div>
-        <Title>Self Health Check</Title>
+        <Title24>Self Health Check</Title24>
         <SubTitle>What symptoms do you feel?</SubTitle>
         <GridWrapper>
           <Grid container spacing={1}>
@@ -312,8 +324,15 @@ const SelfHealthCheck = () => {
       </div>
 
       <ButtonsWrapper>
-        <ButtonBlueFilled content="Send the Symptoms" />
-        <Link to="/request-a-test">
+        <ButtonBlueFilled
+          content="Send the Symptoms"
+          onClick={() => {
+            toastrService.success('You have successfully set your symptoms');
+            props.history.push(`/diagnose`);
+          }}
+        />
+
+        <Link to="/diagnose/request-a-test">
           <ButtonWhiteUnfilled content="Request a Quick Test Kit" />
         </Link>
       </ButtonsWrapper>
@@ -321,4 +340,4 @@ const SelfHealthCheck = () => {
   );
 };
 
-export default SelfHealthCheck;
+export default withRouter(SelfHealthCheck);

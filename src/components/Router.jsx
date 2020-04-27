@@ -34,7 +34,7 @@ export default function App() {
               <Map />
             </Route>
 
-            <Route path="/diagnose">
+            <Route exact path="/diagnose">
               <Diagnose />
             </Route>
 
@@ -42,7 +42,7 @@ export default function App() {
               <SelfHealthCheck />
             </Route>
 
-            <Route path="/request-a-test">
+            <Route path="/diagnose/request-a-test">
               <RequestATest />
             </Route>
 

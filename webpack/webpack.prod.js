@@ -50,22 +50,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(css|scss)$/,
+        test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: false,
-              localsConvention: 'camelCase',
-              modules: {
-                localIdentName: '[local]___[hash:base64:5]',
-              },
-            },
-          },
-          'sass-loader',
-        ],
-      },
+          'style-loader',
+          'css-loader'
+        ]
+      }
     ],
   },
   plugins: [

@@ -1,39 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { Link, withRouter } from 'react-router-dom';
+import Switch from '@material-ui/core/Switch';
+import CloseIcon from '@material-ui/icons/Close';
 import withStyles from '@material-ui/core/es/styles/withStyles';
-import { makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import {
   ButtonBlueFilled,
-  ButtonWhiteUnfilled,
   ContainerWrapper,
-  Title,
+  Title18,
+  Title24,
 } from './CommonComponent';
-import { Link } from 'react-router-dom';
-
-const GridWrapper = styled.div`
-  margin-top: 20px;
-`;
-
-const PeriodExpieriencingQuestion = styled.p`
-  color: #272d40;
-  font-size: 14px;
-`;
+import toastrService from '../service/toastrService';
 
 const ButtonsWrapper = styled.div`
   margin: 10px 0;
+  width: 70%;
 `;
 
-const useStyles = makeStyles(() => ({
+const styles = {
   root: {
     margin: '40px 0 0 5%',
     width: '90%',
@@ -79,124 +67,286 @@ const useStyles = makeStyles(() => ({
   price: {
     marginTop: '1.15rem',
   },
-}));
-
-const BlueRadio = withStyles({
-  root: {
-    border: '2px solid',
-    borderColor: '#2D74FF',
-    borderRadius: '20px',
-    margin: '0.5rem 0',
+  fieldset: {
     width: '100%',
+    'margin-top': '20px',
   },
-  label: {
-    width: '85%',
-  },
-})(FormControlLabel);
-
-const iOSBoxShadow =
-  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
-
-const IOSSlider = withStyles({
-  root: {
-    color: '#3880ff',
-    height: 2,
-    padding: '15px 0',
-  },
-  thumb: {
-    height: 28,
-    width: 28,
-    backgroundColor: '#fff',
-    boxShadow: iOSBoxShadow,
-    marginTop: -14,
-    marginLeft: -14,
-    '&:focus, &:hover, &$active': {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: iOSBoxShadow,
-      },
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 11px)',
-    top: -22,
-    '& *': {
-      background: 'transparent',
-      color: '#000',
-    },
-  },
-  track: {
-    height: 2,
-  },
-  rail: {
-    height: 2,
-    opacity: 0.5,
-    backgroundColor: '#bfbfbf',
-  },
-  mark: {
-    backgroundColor: '#bfbfbf',
-    height: 8,
-    width: 1,
-    marginTop: -3,
-  },
-  markActive: {
-    opacity: 1,
-    backgroundColor: 'currentColor',
-  },
-})(Slider);
-
-const RequestATest = () => {
-  const classes = useStyles();
-
-  return (
-    <ContainerWrapper>
-      <div>
-        <Title>Checkout</Title>
-      </div>
-
-      <Typography variant="h5" display="block" gutterBottom>Payment Method</Typography>
-
-      <FormControl component="fieldset">
-        <RadioGroup aria-label="payment" name="payment" defaultValue="card">
-          <BlueRadio
-            value="card"
-            control={<Radio color="primary" />}
-            label="Credit / Debit Card"
-            labelPlacement="start"
-          />
-
-          <BlueRadio
-            value="cash"
-            control={<Radio color="primary" />}
-            label="Cash on Delivery"
-            labelPlacement="start"
-          />
-
-          <BlueRadio
-            value="bank"
-            control={<Radio color="primary" />}
-            label="Bank Transfer"
-            labelPlacement="start"
-          />
-        </RadioGroup>
-      </FormControl>
-
-      <Grid container spacing={1}>
-        <Grid item xs={4} className={classes.price}>
-          <Typography variant="caption" display="block" gutterBottom>Total to Pay</Typography>
-          <Typography variant="h6" display="block" gutterBottom>20 €</Typography>
-        </Grid>
-        <Grid item xs={8}>
-          <ButtonsWrapper>
-            <ButtonBlueFilled content="Proceed" />
-          </ButtonsWrapper>
-        </Grid>
-      </Grid>
-    </ContainerWrapper>
-  );
 };
 
-export default RequestATest;
+const radioStyles = {
+  radioActive: {
+    color: '#484B4D',
+    'font-size': '14px',
+    border: '2px solid',
+    borderColor: '#2D74FF',
+    borderRadius: '16px',
+    margin: '5px 0',
+    padding: '5px 16px',
+    display: 'flex',
+  },
+  radioInactive: {
+    color: '#484B4D',
+    'font-size': '14px',
+    border: '2px solid',
+    borderColor: '#DAE7F2',
+    borderRadius: '16px',
+    margin: '5px 0',
+    padding: '5px 16px',
+    display: 'flex',
+  },
+  radioLabel: {
+    width: '85%',
+  },
+};
+
+const PaymentFooterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CloseIconLinkWrapper = styled(Link)`
+  position: absolute;
+  top: 25px;
+  right: 15px;
+`;
+
+const TotalToPay = styled.p`
+  color: #484b4d;
+  font-size: 10px;
+  margin: 0;
+`;
+
+const TotalToPayValue = styled.p`
+  color: #272d40;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 0 0;
+`;
+
+const PaymentWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+const ShippingWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+const ShippingBoxWrapper = styled.div`
+  margin-top: 20px;
+  border: 1px solid #dae7f2;
+  border-radius: 16px;
+  padding: 16px 20px;
+`;
+const ShippingTextWrapper = styled.p`
+  color: #484b4d;
+  font-family: 'SF UI Display';
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 22px;
+`;
+
+const ChangeAddressWrapper = styled.a`
+  color: #3b84ff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 22px;
+  text-align: center;
+`;
+
+const BillingAddressWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const BillingAddressLabel = styled.p`
+  color: #484b4d;
+  font-size: 14px;
+`;
+
+const IOSSwitch = withStyles(theme => ({
+  root: {
+    width: 42,
+    height: 26,
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  switchBase: {
+    padding: 1,
+    '&$checked': {
+      transform: 'translateX(16px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        backgroundColor: '#3B84FF',
+        opacity: 1,
+        border: 'none',
+      },
+    },
+    '&$focusVisible $thumb': {
+      color: '#3B84FF',
+      border: '6px solid #fff',
+    },
+  },
+  thumb: {
+    width: 24,
+    height: 24,
+  },
+  track: {
+    borderRadius: 26 / 2,
+    border: `1px solid ${theme.palette.grey[400]}`,
+    backgroundColor: theme.palette.grey[50],
+    opacity: 1,
+    transition: theme.transitions.create(['background-color', 'border']),
+  },
+  checked: {},
+  focusVisible: {},
+}))(({ classes, ...props }) => {
+  return (
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+});
+
+class RequestATest extends React.Component {
+  state = {
+    paymentMethod: 'card',
+  };
+
+  setPaymentMethod = e => {
+    this.setState({ paymentMethod: e.target.value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <ContainerWrapper>
+        <CloseIconLinkWrapper to="/diagnose">
+          <CloseIcon />
+        </CloseIconLinkWrapper>
+
+        <div>
+          <Title24>Check Out</Title24>
+
+          <ShippingWrapper>
+            <Title18>Shipping Address</Title18>
+
+            <ShippingBoxWrapper>
+              <ShippingTextWrapper>
+                64 Dakota Point street,
+                <br />
+                Cluj-Napoca, Romania 408207
+              </ShippingTextWrapper>
+
+              <ChangeAddressWrapper>Change the Address</ChangeAddressWrapper>
+            </ShippingBoxWrapper>
+          </ShippingWrapper>
+
+          <BillingAddressWrapper>
+            <BillingAddressLabel>
+              Billing Address same as shipping Address
+            </BillingAddressLabel>
+
+            <FormControlLabel
+              control={
+                <IOSSwitch checked={true} onChange={() => {}} name="checkedB" />
+              }
+            />
+          </BillingAddressWrapper>
+
+          <PaymentWrapper>
+            <Title18>Payment Method</Title18>
+
+            <FormControl component="fieldset" className={classes.fieldset}>
+              <RadioGroup
+                aria-label="payment"
+                name="payment"
+                defaultValue="card"
+              >
+                <FormControlLabel
+                  value="card"
+                  control={<Radio color="primary" />}
+                  label="Credit / Debit Card"
+                  labelPlacement="start"
+                  onClick={this.setPaymentMethod}
+                  classes={{
+                    root:
+                      this.state.paymentMethod === 'card'
+                        ? classes.radioActive
+                        : classes.radioInactive,
+                    label: classes.radioLabel,
+                  }}
+                ></FormControlLabel>
+
+                <FormControlLabel
+                  value="cash"
+                  control={<Radio color="primary" />}
+                  label="Cash on Delivery"
+                  labelPlacement="start"
+                  onClick={this.setPaymentMethod}
+                  classes={{
+                    root:
+                      this.state.paymentMethod === 'cash'
+                        ? classes.radioActive
+                        : classes.radioInactive,
+                    label: classes.radioLabel,
+                  }}
+                ></FormControlLabel>
+
+                <FormControlLabel
+                  value="bank"
+                  control={<Radio color="primary" />}
+                  label="Bank Transfer"
+                  labelPlacement="start"
+                  onClick={this.setPaymentMethod}
+                  classes={{
+                    root:
+                      this.state.paymentMethod === 'bank'
+                        ? classes.radioActive
+                        : classes.radioInactive,
+                    label: classes.radioLabel,
+                  }}
+                ></FormControlLabel>
+              </RadioGroup>
+            </FormControl>
+          </PaymentWrapper>
+        </div>
+
+        <PaymentFooterWrapper>
+          <div>
+            <TotalToPay>Total to Pay</TotalToPay>
+            <TotalToPayValue>20 €</TotalToPayValue>
+          </div>
+
+          <ButtonsWrapper>
+            <ButtonBlueFilled
+              content="Proceed"
+              onClick={() => {
+                toastrService.success(
+                  'You have successfully purchased a Quick Test Kit'
+                );
+                this.props.history.push(`/diagnose`);
+              }}
+            />
+          </ButtonsWrapper>
+        </PaymentFooterWrapper>
+      </ContainerWrapper>
+    );
+  }
+}
+
+export default withRouter(
+  withStyles({ ...styles, ...radioStyles })(RequestATest)
+);

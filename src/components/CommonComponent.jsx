@@ -3,9 +3,16 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles/index';
 
-export const Title = styled.h1`
+export const Title24 = styled.h1`
   color: #272d40;
   font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+`;
+
+export const Title18 = styled.h1`
+  color: #272d40;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
 `;
@@ -53,10 +60,14 @@ const useButtonBlueFilledStyles = makeStyles(() => ({
   },
 }));
 
-export const ButtonBlueFilled = ({ content }) => {
+export const ButtonBlueFilled = ({ content, onClick }) => {
   const classes = useButtonBlueFilledStyles();
   return (
-    <Button variant="contained" className={classes.buttonBlueFilled}>
+    <Button
+      variant="contained"
+      className={classes.buttonBlueFilled}
+      onClick={onClick}
+    >
       {content}
     </Button>
   );

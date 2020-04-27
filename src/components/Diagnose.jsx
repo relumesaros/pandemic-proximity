@@ -7,8 +7,9 @@ import {
   ButtonBlueFilled,
   ContainerWrapper,
   SubTitle,
-  Title,
+  Title24,
 } from './CommonComponent';
+import toastrService from '../service/toastrService';
 
 const CardWrapper = styled.div`
   border-radius: 16px;
@@ -80,7 +81,7 @@ const Diagnose = () => {
   return (
     <ContainerWrapper>
       <div>
-        <Title>Diagnose</Title>
+        <Title24>Diagnose</Title24>
         <SubTitle>Have a big impact in your Community.</SubTitle>
         <SubTitle>Help us to prevent the spread of COVID-19</SubTitle>
 
@@ -90,7 +91,15 @@ const Diagnose = () => {
               Self Health Check
             </Button>
           </Link>
-          <Button variant="outlined" className={classes.buttonRed}>
+          <Button
+            variant="outlined"
+            className={classes.buttonRed}
+            onClick={() => {
+              toastrService.success(
+                'You marked yourself as infected. Stay safe!'
+              );
+            }}
+          >
             Mark yourself as infected
           </Button>
         </div>
@@ -100,7 +109,7 @@ const Diagnose = () => {
         <CardSubTitle>
           You can request a COVID-19 Quick Test Kit for 20 €
         </CardSubTitle>
-        <Link to="/request-a-test">
+        <Link to="/diagnose/request-a-test">
           <ButtonBlueFilled content="Request a Quick Test Kit" />
         </Link>
       </CardWrapper>
