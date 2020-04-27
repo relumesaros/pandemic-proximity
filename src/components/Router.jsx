@@ -8,6 +8,7 @@ import Home from './Home';
 import Statistics from './Statistics';
 import News from './News';
 import Map from './Map';
+import RequestATest from './RequestATest';
 
 const RouterContentWrapper = styled.div`
   width: 100%;
@@ -39,6 +40,10 @@ export default function App() {
 
             <Route path="/self-health-check">
               <SelfHealthCheck />
+            </Route>
+
+            <Route path="/request-a-test">
+              <RequestATest />
             </Route>
 
             <Route path="/news">

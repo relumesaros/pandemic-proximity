@@ -100,7 +100,9 @@ const Diagnose = () => {
         <CardSubTitle>
           You can request a COVID-19 Quick Test Kit for 20 €
         </CardSubTitle>
-        <ButtonBlueFilled content="Request a Quick Test Kit" />
+        <Link to="/request-a-test">
+          <ButtonBlueFilled content="Request a Quick Test Kit" />
+        </Link>
       </CardWrapper>
     </ContainerWrapper>
   );

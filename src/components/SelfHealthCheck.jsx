@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import withStyles from '@material-ui/core/es/styles/withStyles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -312,7 +313,9 @@ const SelfHealthCheck = () => {
 
       <ButtonsWrapper>
         <ButtonBlueFilled content="Send the Symptoms" />
-        <ButtonWhiteUnfilled content="Request a Quick Test Kit" />
+        <Link to="/request-a-test">
+          <ButtonWhiteUnfilled content="Request a Quick Test Kit" />
+        </Link>
       </ButtonsWrapper>
     </ContainerWrapper>
   );
